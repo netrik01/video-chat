@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>video-chat-profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="../stylesheets/profile.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <a id="line" href="">
+                <h1>Zoom.</h1>
+            </a>
+        </div>
+        <div class="navbar">
+            <a id="line" href="/meeting">Meeting</a>
+            <a id="line" href="/meeting">join</a>
+            <a id="line" href="">Service</a>
+            <div id="line" class="nav-img">
+                <% if(user.image.length>0){ %>
+                    <img src="../images/userimages/<%= user.image %>" alt="">
+                <% } else{ %>
+                    <div class="img"></div>
+                <% } %>
+            </div>
+        </div>
+    </header>
+    <!-- ----------toggle---------- -->
+    <div class="nav-toggle">
+        <h4 style="text-transform: capitalize;">
+            <%= user.username %>
+        </h4>
+        <a href="/logout">Sign out</a>
+        <div class="day-night s-icon" title="Dark mode">
+            <i class="fas"></i>
+        </div>
+    </div>
+
+    <!-- ----------main-section---------- -->
+    <div class="profile section">
+        <div class="container">
+            <div class="row">
+                <div class="top-main">
+                    <div class="top-left">
+                        <% if(user.image.length>0){ %>
+                            <img src="../images/userimages/<%= user.image %>" alt="">
+                        <% } else{ %>
+                            <i class="ri-image-edit-fill" title="Edit image"></i>
+                        <% } %>
+                    </div>
+                    <div class="top-right ">
+                        <h1 style="text-transform: capitalize;">
+                            <%= user.username %>
+                        </h1>
+                        <h4>
+                            <%= user.displayname %>
+                        </h4>
+                    </div>
+
+                    <!-- ---------update-section--------- -->
+                    <div class="update-section wrapper active-update">
+                        <span class="icon-close icon-close-update"><ion-icon name="close"></ion-icon></span>
+                        <div class="form-box login">
+                            <h2>Update Details</h2>
+                            <form action="/update" method="post">
+                                <div class="input-box">
+                                    <input type="text" name="username" value="<%= user.username %>">
+                                    <label>User Name :</label>
+                                </div>
+                                <div class="input-box">
+                                    <input type="text" name="displayname" value="<%= user.displayname %>"
+                                        class="<%= user.displayname.length === 0 ? 'redinp' : '' %> form-control">
+                                    <label>Display Name :</label>
+                                </div>
+                                <div class="input-box">
+                                    <input type="text" name="contact" value="<%= user.contact %>"
+                                        class="<%= user.contact.length === 0 ? 'redinp' : '' %> form-control">
+                                    <label>Phone no. :</label>
+                                </div>
+                                <div class="input-box">
+                                    <input type="text" name="country" value="<%= user.country %>"
+                                        class="<%= user.country.length === 0 ? 'redinp' : '' %> form-control">
+                                    <label>Country :</label>
+                                </div>
+                                <button type="submit" class="btn">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="image-upload wrapper active-image">
+                        <span class="icon-close icon-close-image"><ion-icon name="close"></ion-icon></span>
+                        <div class="form-box login">
+                            <h2>Upload Image</h2>
+                            <form action="/image" method="post" enctype="multipart/form-data">
+                                <input type="file" name="image">
+                                <button type="submit" class="btn">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                    <h5 class="edit-btn">Edit</h5>
+                </div>
+                <div class="btm-main">
+                    <h6>Personal</h6>
+                    <div class="box">
+                        <div class="inside-box1">
+                            <h4>Phone</h4>
+                            <h4>Country</h4>
+                            <h4>Language</h4>
+                            <h4>Time Zone</h4>
+                            <h4>Time Formate</h4>
+                            <h4>Two-Factor Authentication</h4>
+                        </div>
+                        <div class="inside-box2">
+                            <% if(user.contact.length>0){ %>
+                                <h4>
+                                    <%= user.contact %>
+                                </h4>
+                                <% } else{ %>
+                                    <!-- <h4>123⁕⁕⁕⁕⁕⁕⁕⁕</h4> -->
+                                    <h4>Not set</h4>
+                                    <% } %>
+                                        <% if(user.country.length>0){ %>
+                                            <h4 style="text-transform: capitalize;">
+                                                <%= user.country %>
+                                            </h4>
+                                            <% } else{ %>
+                                                <h4>Not set</h4>
+                                                <% } %>
+                                                    <h4>English</h4>
+                                                    <h4>(GMT +5:30) India</h4>
+                                                    <h4>Use 12-hour time</h4>
+                                                    <h4>Off</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="../javascripts/profile.js"></script>
+    <script src="../javascripts/dark_mode.js"></script>
+</body>
+
+</html>

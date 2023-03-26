@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>video-chat-join</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="../stylesheets/join.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <a id="line" href="">
+                <h1>Zoom.</h1>
+            </a>
+        </div>
+        <div class="navbar">
+            <a id="line" href="/profile">Profile</a>
+            <a id="line" onclick="openTab('meeting')">Meeting</a>
+            <a id="line" onclick="openTab('join')">Join</a>
+            <!-- <a id="line" href="#">Service</a> -->
+            <div id="line" class="nav-img">
+                <% if(user.image.length>0){ %>
+                    <img src="../images/userimages/<%= user.image %>" alt="">
+                <% } else{ %>
+                    <div class="img"></div>
+                <% } %>
+            </div>
+        </div>
+    </header>
+
+    <!-- ----------toggle---------- -->
+    <div class="nav-toggle">
+        <h4 style="text-transform: capitalize;">
+            <%= user.username %>
+        </h4>
+        <a href="/logout">Sign out</a>
+        <div class="day-night s-icon" title="Dark mode">
+            <i class="fas"></i>
+        </div>
+    </div>
+
+    <!-- ----------main-section---------- -->
+    <div class="join section">
+        <div class="container">
+            <!-- <div class="row">
+                <div class="content meeting active-tab" id="meeting">
+                    <h2>Meeting ID</h2>
+                    <% if(user.roomId.length>0){ %>
+                        <form class="form-box" action="/join" method="get">
+                            <div class="meeting-box input-box">
+                                <input type="text" value="<%= user.roomId %>" required>
+                                <label>Copy this link and join meeting</label>
+                            </div>
+                            <button type="submit" class="meeting-btn btn">Update Meeting Id</button>
+                        </form>
+                        <button class="btn">join Meeting Id</button>
+                    <% }else{ %>
+                        <form class="form-box" action="/join" method="get">
+                            <a href="/join"><button type="submit" class="meeting-btn btn">Generate Meeting Id</button></a>
+                        </form>
+                    <% } %>
+                </div>
+                <div class="content meeting" id="join">
+                    <h2>Join Meeting</h2>
+                    <form class="form-box" action="/room" method="get">
+                        <div class="input-box">
+                            <input type="text" name="room" required>
+                            <label>Meeting ID or Personal Link Name</label>
+                        </div>
+                        <button type="submit" class="btn">Join</button>
+                    </form>
+                </div>
+            </div> -->
+            <div class="row">
+                <div class="content active-tab" id="meeting">
+                    <h2>Meeting ID</h2>
+                    <% if(user.roomId.length>0){ %>
+                        <form class="form-box" action="/join" method="get">
+                            <div class="meeting-box input-box">
+                                <input type="text" value="<%= user.roomId %>" required>
+                                <label>Copy this link and join meeting</label>
+                            </div>
+                            <button type="submit" class="meeting-btn btn">Update Meeting ID</button>
+                        </form>
+                        <button class="join-btn btn" onclick="openTab('join')">Join Meeting</button>
+                    <% }else{ %>
+                        <form class="form-box" action="/join" method="get">
+                            <a href="/join"><button type="submit" class="meeting-btn btn">Generate Meeting ID</button></a>
+                        </form>
+                    <% } %>
+                </div>
+                <div class="content" id="join">
+                    <h2>Join Meeting</h2>
+                    <form class="form-box" action="/room" method="get">
+                        <div class="input-box">
+                            <input type="text" name="room" required>
+                            <label>Meeting ID or Personal Link Name</label>
+                        </div>
+                        <button type="submit" class="btn">Join</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="../javascripts/join.js"></script>
+    <script src="../javascripts/dark_mode.js"></script>
+</body>
+
+</html>
