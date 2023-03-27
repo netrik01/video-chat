@@ -121,10 +121,6 @@ router.get('/:room',isLoggedIn, async (req,res)=>{
   }
 })
 
-// router.get('/:room', async (req,res)=>{
-//   res.render('room',{roomID:req.params.room})
-// })
-
 // -----------login-with-google-----------
 
 router.get('/login/federated/google', passport.authenticate('google'));
