@@ -110,19 +110,20 @@ router.get('/room',isLoggedIn, async (req,res)=>{
   res.redirect(`/${roomId}`)
 })
 
-// router.get('/:room',isLoggedIn, async (req,res)=>{
-//   let user=await userModel.findOne({username:req.session.passport.user})
-//   if(user.roomId === req.params.room){
-//     res.render('room',{roomID:req.params.room})
-//   }else{
-//     res.send("Please check the roomID once again !")
-//     // res.send("Great, but it can't work anymore!")
-//     // res.redirect('/')
-//   }
-// })
-router.get('/:room', async (req,res)=>{
-  res.render('room',{roomID:req.params.room})
+router.get('/:room',isLoggedIn, async (req,res)=>{
+  let user=await userModel.findOne({username:req.session.passport.user})
+  if(user.roomId === req.params.room){
+    res.render('room',{roomID:req.params.room})
+  }else{
+    res.send("Please check the roomID once again !")
+    // res.send("Great, but it can't work anymore!")
+    // res.redirect('/')
+  }
 })
+
+// router.get('/:room', async (req,res)=>{
+//   res.render('room',{roomID:req.params.room})
+// })
 
 // -----------login-with-google-----------
 
