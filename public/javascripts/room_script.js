@@ -8,7 +8,7 @@ myVideo.muted = true;
 
 
 const user = prompt("Enter your name");
-console.log(user)
+// console.log(user)
 
 var peer = new Peer(undefined, {
   host: '/',
@@ -88,12 +88,12 @@ muteButton.addEventListener("click", () => {
   if (enabled) {
     myVideoStream.getAudioTracks()[0].enabled = false;
     html = `<i class="fas fa-microphone-slash"></i>`;
-    muteButton.classList.toggle("background__red");
+    // muteButton.classList.toggle("background__red");
     muteButton.innerHTML = html;
   } else {
     myVideoStream.getAudioTracks()[0].enabled = true;
     html = `<i class="fas fa-microphone"></i>`;
-    muteButton.classList.toggle("background__red");
+    // muteButton.classList.toggle("background__red");
     muteButton.innerHTML = html;
   }
 });
@@ -103,12 +103,12 @@ stopVideo.addEventListener("click", () => {
   if (enabled) {
     myVideoStream.getVideoTracks()[0].enabled = false;
     html = `<i class="fas fa-video-slash"></i>`;
-    stopVideo.classList.toggle("background__red");
+    // stopVideo.classList.toggle("background__red");
     stopVideo.innerHTML = html;
   } else {
     myVideoStream.getVideoTracks()[0].enabled = true;
     html = `<i class="fas fa-video"></i>`;
-    stopVideo.classList.toggle("background__red");
+    // stopVideo.classList.toggle("background__red");
     stopVideo.innerHTML = html;
   }
 });
@@ -156,7 +156,7 @@ text.addEventListener("keydown", (e) => {
     socket.emit("message", text.value);
     text.value = "";
   }
-});
+}); 
 
 socket.on("createMessage", (message, userName) => {
   messages.innerHTML =
